@@ -2,8 +2,11 @@ import streamlit as st
 import google.generativeai as genai
 
 # Configurar la API Key de Gemini
-API_KEY = "TU_API_KEY_AQUI"
-genai.configure(API_KEY_GEMINI=st.secrets["API_KEY_GEMINI"])
+API_KEY = st.secrets.get("API_KEY_GEMINI")
+if not API_KEY:
+    st.error("Error: No se encontró API_KEY_GEMINI en secrets.")
+else:
+    genai.configure(api_key=API_KEY)
 
 def generar_plan_estudio(edad, nivel, intereses):
     prompt = (f"Genera un plan de estudio personalizado para un estudiante de {edad} años, "
