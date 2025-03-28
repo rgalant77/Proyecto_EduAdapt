@@ -47,6 +47,26 @@ if st.button("Generar Plan de Estudio"):
         st.subheader("Plan de Estudio Personalizado")
         st.write(plan_estudio)
 
+        # Add download option
+        download_format = st.selectbox("Descargar plan de estudio como:", ["TXT", "JSON"])
+
+        if download_format == "TXT":
+            file_name = "plan_estudio.txt"
+            mime_type = "text/plain"
+            data = plan_estudio
+        else:
+            import json
+            file_name = "plan_estudio.json"
+            mime_type = "application/json"
+            data = json.dumps({"plan_estudio": plan_estudio}, indent=4, ensure_ascii=False).encode('utf-8')
+
+        st.download_button(
+            label="Descargar plan de estudio",
+            data=data,
+            file_name=file_name,
+            mime=mime_type,
+        )
+
 st.subheader("¿Cómo funciona EduAdapt?")
 st.write("""
 EduAdapt utiliza inteligencia artificial para generar planes de estudio personalizados. 
