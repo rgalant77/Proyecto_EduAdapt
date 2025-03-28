@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 # Configurar la API Key de Gemini
 API_KEY = "TU_API_KEY_AQUI"
-genai.configure(api_key=API_KEY)
+genai.configure(API_KEY_GEMINI=st.secrets["API_KEY_GEMINI"])
 
 def generar_plan_estudio(edad, nivel, intereses):
     prompt = (f"Genera un plan de estudio personalizado para un estudiante de {edad} años, "
