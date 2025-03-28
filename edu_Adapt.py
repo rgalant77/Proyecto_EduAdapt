@@ -12,7 +12,7 @@ def generar_plan_estudio(edad, nivel, intereses):
     prompt = (f"Genera un plan de estudio personalizado para un estudiante de {edad} años, "
               f"en nivel {nivel}, con intereses en {intereses}. El plan debe ser detallado y estructurado.")
     
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-2.0-flash")
     response = model.generate_content(prompt)
     return response.text
 
